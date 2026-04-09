@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>掲示板</title>
+
+<style>
+body { font-family: sans-serif; max-width: 800px; margin: auto; }
+input, textarea { width: 100%; margin: 5px 0; }
+button { padding: 8px; }
+.preview { background:#f5f5f5; padding:10px; margin-top:10px; }
+</style>
+
+</head>
+<body>
+
+<h1>掲示板</h1>
+
+<label>名前</label>
+<input type="text" id="name" placeholder="名無しさん">
+
+<label>メッセージ</label>
+<textarea id="msg" placeholder="ここに書く"></textarea>
+
+<button onclick="preview()">投稿内容をコピー</button>
+
+<div class="preview" id="preview"></div>
+
+<p>👇 下のコメント欄に貼り付けて投稿してください</p>
+
+<hr>
+
+<!-- Giscus -->
+<script src="https://giscus.app/client.js"
+        data-repo="srinivasarimskyyamatov/msg"
+        data-repo-id="R_kgDOR9x3jg"
+        data-category="General"
+        data-category-id="DIC_kwDOR9x3js4C6cCS"
+        data-mapping="pathname"
+        data-reactions-enabled="1"
+        data-theme="light"
+        data-lang="ja"
+        crossorigin="anonymous"
+        async>
+</script>
+
+<script>
+function preview() {
+  const name = document.getElementById("name").value || "名無しさん";
+  const msg = document.getElementById("msg").value;
+
+  const text = `【${name}】\n${msg}`;
+
+  document.getElementById("preview").innerText = text;
+
+  navigator.clipboard.writeText(text);
+}
+</script>
+
+</body>
+</html>
